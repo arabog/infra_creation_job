@@ -59,7 +59,7 @@ https://github.com/udacity/nd9991-c3-hello-world-exercise-solution/blob/main/tem
 
 
 Step 4. Create the CircleCI Config file
-The ./circleci/config.yml file will have the following sections:
+The .circleci/config.yml file will have the following sections:
 version: 2.1
 # Use a package of configuration called an orb.
 orbs:
@@ -82,3 +82,17 @@ workflows:
     jobs:
       - myjob1
       - myjob2
+
+Create a job in your Circle CI config file named create_infrastructure.
+  create_infrastructure: 
+      docker:
+        - image: amazon/aws-cli
+      steps:
+        - checkout
+        - run:
+            name: Create Cloudformation Stack
+            command: |
+              aws cloudformation deploy \
+                --template-file template.yml \
+                --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
+                --region us-east-1
