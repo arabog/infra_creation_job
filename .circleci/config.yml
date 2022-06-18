@@ -8,6 +8,15 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.3
 # Orchestrate or schedule a set of jobs
 
+commands:
+  # Exercise: Reusable Job Code
+  print_pipeline_id:
+    parameters:
+      id: 
+        type: string
+    steps:
+      - run: echo << parameters.id >>
+
 
 jobs:
 
@@ -19,7 +28,7 @@ jobs:
           - run:
               name: Create Cloudformation Stack
               command: |
-                aws cloudformation deploy --template-file template.yml template.json --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
+                aws cloudformation deploy --template-file template.yml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
 
 workflows:
   # Name the workflow
