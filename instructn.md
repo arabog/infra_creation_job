@@ -83,7 +83,31 @@ workflows:
       - myjob1
       - myjob2
 
-Create a job in your Circle CI config file named create_infrastructure.
+====================
+
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Choose either one of the orbs below
+  # Declare a dependency on the welcome-orb
+  # welcome: circleci/welcome-orb@0.4.1
+  aws-cli: circleci/aws-cli@2.0.3
+# Orchestrate or schedule a set of jobs
+
+commands:
+  # Exercise: Reusable Job Code
+  print_pipeline_id:
+    parameters:
+      id: 
+        type: string
+    steps:
+      - run: echo << parameters.id >>
+
+
+jobs:
+
+<!-- Create a job in your Circle CI config file named create_infrastructure. -->
   create_infrastructure: 
       docker:
         - image: amazon/aws-cli
@@ -96,3 +120,7 @@ Create a job in your Circle CI config file named create_infrastructure.
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
+
+
+soln:
+https://github.com/udacity/nd9991-c3-hello-world-exercise-solution
