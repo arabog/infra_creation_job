@@ -4,6 +4,11 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: infrastructure creation job
 
+Parameters:
+  EnvironmentName:
+      Description: An environment name that will be prefixed to resource names
+      Type: String
+
 
 Resources:
 
