@@ -10,7 +10,8 @@ Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      SecurityGroups: sg-095a02cffdcebbf91
+      SecurityGroups: 
+        - sg-095a02cffdcebbf91
         # - !Ref InstanceSecurityGroup
 
       # Change this, as applicable to you      
