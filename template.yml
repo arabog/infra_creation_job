@@ -10,8 +10,9 @@ Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      SecurityGroups:
-        - !Ref InstanceSecurityGroup
+      SecurityGroups: 'sg-095a02cffdcebbf91'
+        # - !Ref InstanceSecurityGroup
+
       # Change this, as applicable to you      
       KeyName: ansible2
       # Change this, as applicable to you
@@ -19,12 +20,12 @@ Resources:
       ImageId: 'ami-09e67e426f25ce0d7' 
       InstanceType: t3.micro
 
-  InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupDescription: Enable SSH access via port 22
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: 0.0.0.0/0 
+  # InstanceSecurityGroup:
+  #   Type: 'AWS::EC2::SecurityGroup'
+  #   Properties:
+  #     GroupDescription: Enable SSH access via port 22
+  #     SecurityGroupIngress:
+  #       - IpProtocol: tcp
+  #         FromPort: '22'
+  #         ToPort: '22'
+  #         CidrIp: 0.0.0.0/0 
